@@ -6,16 +6,33 @@
 //!
 //! Layer 1 = LOWER, layer 2 = RAISE, layer 3 = ADJUST. Unimplemented ZSA
 //! actions (DB_TOGG, MIDI/audio/one-shot keys) map to `No`.
+#[cfg(feature = "felschr-keymap")]
+#[path = "keymap_felschr.rs"]
+mod keymap_felschr;
+
 use rmk::types::action::{EncoderAction, KeyAction};
+#[cfg(not(feature = "felschr-keymap"))]
 use rmk::{a, encoder, k, kbctrl, layer, light, mo, shifted};
 
 pub(crate) const COL: usize = 6;
 pub(crate) const ROW: usize = 8;
 
+// With the `felschr-keymap` feature, the custom keymap ported from the user's
+// Oryx layout (see `keymap_felschr.rs`) is used in both firmware variants.
+#[cfg(feature = "felschr-keymap")]
+pub(crate) const NUM_LAYER: usize = keymap_felschr::NUM_LAYER;
+#[cfg(not(feature = "felschr-keymap"))]
 pub(crate) const NUM_LAYER: usize = 4;
 pub(crate) const NUM_ENCODER: usize = 1; // padding for the optional PB12/PB13 encoder
 
 
+#[cfg(feature = "felschr-keymap")]
+#[rustfmt::skip]
+pub const fn get_default_keymap() -> [[[KeyAction; COL]; ROW]; NUM_LAYER] {
+    keymap_felschr::get_felschr_keymap()
+}
+
+#[cfg(not(feature = "felschr-keymap"))]
 pub const fn get_default_keymap() -> [[[KeyAction; COL]; ROW]; NUM_LAYER] {
     // Layer 1 = LOWER, layer 2 = RAISE, layer 3 = ADJUST. Unimplemented ZSA
     // actions (DB_TOGG, MIDI/audio/one-shot keys) map to `No`.
@@ -67,6 +84,14 @@ pub const fn get_default_keymap() -> [[[KeyAction; COL]; ROW]; NUM_LAYER] {
     ]
 }
 
+#[cfg(feature = "felschr-keymap")]
+#[rustfmt::skip]
+#[allow(dead_code)]
+pub const fn get_default_encoder_map() -> [[EncoderAction; NUM_ENCODER]; NUM_LAYER] {
+    keymap_felschr::get_felschr_encoder_map()
+}
+
+#[cfg(not(feature = "felschr-keymap"))]
 #[rustfmt::skip]
 #[allow(dead_code)]
 pub const fn get_default_encoder_map() -> [[EncoderAction; NUM_ENCODER]; NUM_LAYER] {

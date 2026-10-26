@@ -17,8 +17,21 @@ stock QMK-based firmware.
 - **Layer status LEDs** (teeth): left on LOWER, right on RAISE, both on ADJUST
 - **STM32 ROM DFU** bootloader entry from the firmware (stock QMK `stm32_dfu.c`
   style)
-- **ZSA firmware25 default keymap** (`DEFAULT`/`LOWER`/`RAISE`/`ADJUST`),
-  incl. Caps Word on the ZSA `CW` key
+- Two compiled-in keymap selectable at build time: the ZSA firmware25
+  default keymap, and a custom `felschr` keymap ported from the [Oryx layout](
+  https://configure.zsa.io/planck-ez/layouts/bvBwP/latest/0) (QMK 25.0):
+  5 layers, tap-hold combos with the Oryx `holdOnOtherKeyPress` feel, NAV keys
+  lit white on the IDX-modified map.
+
+## Keymap
+
+Two compiled-in keymaps, selected via `--features felschr-keymap`:
+
+1. **ZSA default** — ZSA firmware25 default keymap (`DEFAULT`/`LOWER`/`RAISE`/
+   `ADJUST`), incl. Caps Word on the ZSA `CW` key; all live-editable via Vial.
+2. **felschr** — Oryx port: 5-layer layout with a dedicated NAV layer,
+   one-shot modifiers, home-row mods (Layered QT/profile), and MIDI-free
+   actions.
 
 ## Building
 

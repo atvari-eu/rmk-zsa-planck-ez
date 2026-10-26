@@ -17,6 +17,8 @@ git (`git add flake.nix flake.lock`) or `nix develop` will not see it.
 ```sh
 cargo build --release                                              # base
 cargo build --release --bin rmk-zsa-planck-ez-glow --features glow
+cargo build --release --bin rmk-zsa-planck-ez      --features felschr-keymap
+cargo build --release --bin rmk-zsa-planck-ez-glow --features glow,felschr-keymap
 ```
 
 - `.cargo/config.toml` already sets `build.target = thumbv7em-none-eabihf`, so
@@ -29,7 +31,8 @@ cargo build --release --bin rmk-zsa-planck-ez-glow --features glow
 
 ## Features
 
-`default = []`. `glow` gates the glow bin (`required-features`). RMK's `storage`
+`default = []`. `glow` gates the glow bin (`required-features`).
+`felschr-keymap` swaps the ZSA default keymap for the Oryx port. RMK's `storage`
 and `watchdog` features are always enabled; keymap/Vial persistence uses the
 last two 2 KB flash sectors reserved in `memory.x`.
 
@@ -40,7 +43,9 @@ last two 2 KB flash sectors reserved in `memory.x`.
 - Keymaps are matrix-indexed `[8][6]` arrays, not the physical 4x12 grid: rows
   0-3 are the left half, rows 4-7 the right. The bottom row is scrambled per
   `vial.json`; cell `(3,5)` is unused and the 2u space is `(7,5)`.
-- `keymap.rs` = ZSA default keymap (4 layers).
+- `keymap.rs` = ZSA default (4 layers), `keymap_felschr.rs` = Oryx port (5
+  layers, layer 4 = NAV). The `felschr-keymap` feature selects it, and
+  `NUM_LAYER` follows.
 - `Action::User(0)` = stock LED_LEVEL key (only the Glow `rgb.rs` task acts on
   it). `Action::User(1)` = STM32 ROM-DFU jump, handled by base `teeth.rs` and
   Glow `rgb.rs`.

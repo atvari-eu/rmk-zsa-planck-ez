@@ -49,6 +49,9 @@ static_cell = "2"
 default = []
 # Planck EZ Glow: I2C IS31FL3737 LED driver
 glow = []
+# Use the keymap ported from the user's Oryx layout instead of the ZSA/olkb
+# default (src/keymap_felschr.rs instead of the stock keymap in this file).
+felschr-keymap = []
 
 [build-dependencies]
 const-gen = "1.6"

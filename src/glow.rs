@@ -164,6 +164,18 @@ async fn main(_spawner: Spawner) {
     let mut behavior_config = BehaviorConfig::default();
     // ZSA tri-layer: LOWER (1) + RAISE (2) activate ADJUST (3).
     behavior_config.tri_layer = Some([1, 2, 3]);
+    // Oryx layout config (via the `felschr-keymap` feature): permissiveHold +
+    // holdOnOtherKeyPress (QMK 25.0). RMK's morse profile supports one mode;
+    // hold-on-other-press dominates, so use it for the default tap-hold profile.
+    #[cfg(feature = "felschr-keymap")]
+    {
+        behavior_config.morse.default_profile = rmk::types::morse::MorseProfile::new(
+            Some(false),
+            Some(rmk::types::morse::MorseMode::HoldOnOtherPress),
+            Some(250u16),
+            Some(250u16),
+        );
+    }
     let per_key_config = PositionalConfig::default();
     // Internal flash for Vial keymap persistence. memory.x reserves the last
     // two 2 KB sectors, so StorageConfig::default() never overlaps firmware.
