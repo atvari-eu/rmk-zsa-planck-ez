@@ -55,6 +55,23 @@ dfu-util -d 0483:df11 -a 0 -s 0x08000000:leave -D rmk-zsa-planck-ez-glow.bin
 Flashing is safe: the STM32 system-memory DFU bootloader lives in unmodifiable
 system ROM and cannot be corrupted by a firmware image.
 
+### flash.sh
+
+`flash.sh` builds the selected variant, converts it to a `.bin`, and flashes it
+in one step:
+
+```sh
+./flash.sh                    # base variant
+./flash.sh glow               # Glow variant
+```
+
+The second argument is a comma-separated list of full cargo feature names;
+`glow` is added automatically for the Glow variant. Keymap persistence is built
+in, so no `storage` flag is needed.
+
+The script requires `rust-objcopy` and `dfu-util` in `$PATH`, or run it inside
+`nix develop`.
+
 ## Dependencies
 
 | Crate                                | Role                                         |
