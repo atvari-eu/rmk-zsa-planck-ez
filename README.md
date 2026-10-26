@@ -87,8 +87,8 @@ The script requires `rust-objcopy` and `dfu-util` in `$PATH`, or run it inside
 This port builds on prior work on
 [jpds/rmk-zsa-voyager](https://github.com/jpds/rmk-zsa-voyager/), an RMK port for
 another ZSA keyboard. Its STM32F303 RMK setup, warm-boot USB handling and flash
-storage layout laid the groundwork for this firmware. Thanks to jpds for the
-upstream work that made it possible.
+storage layout laid the groundwork for this firmware. Thanks to
+[jpds](https://github.com/jpds) for the upstream work that made it possible.
 
 ## License
 
