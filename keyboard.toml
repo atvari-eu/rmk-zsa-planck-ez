@@ -1,0 +1,11 @@
+# Event channel sizing override for the manual-API firmware.
+# RMK loads this file via `KEYBOARD_TOML_PATH` to bump compile-time
+# subscriber counts; no other sections apply to the manual API.
+# - `teeth` + RGB lighting both observe layer changes.
+# - One custom subscriber consumes light actions on the Glow variant.
+
+[event.layer_change]
+subs = 2
+
+[event.action]
+subs = 1

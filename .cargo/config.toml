@@ -1,0 +1,13 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+runner = "probe-rs run --chip STM32F303CCTx"
+
+# Use flip-link overflow check: https://github.com/knurling-rs/flip-link
+linker = "flip-link"
+
+[build]
+target = "thumbv7em-none-eabihf"     # Cortex-M4F
+
+[env]
+DEFMT_LOG = "debug"
+# Only used for compile-time event sizing; the firmware itself is the manual API.
+KEYBOARD_TOML_PATH = { relative = true, value = "keyboard.toml" }
