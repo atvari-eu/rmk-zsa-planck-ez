@@ -22,12 +22,15 @@ stock QMK-based firmware.
 
 ## Building
 
-Requires the Rust toolchain and `flip-link` in `$PATH`:
+The Nix flake provides the complete toolchain:
 
 ```sh
-rustup target add thumbv7em-none-eabihf
-cargo install flip-link
+nix develop
 ```
+
+Without Nix, install the Rust toolchain with the `thumbv7em-none-eabihf`
+target and `llvm-tools`, plus `flip-link`, `cargo-binutils` (for `rust-objcopy`)
+and `dfu-util` (for flashing).
 
 Build a release binary:
 

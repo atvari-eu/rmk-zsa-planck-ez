@@ -6,10 +6,13 @@ local rmk fork; do not add a path patch.
 
 ## Build & verify
 
-Prerequisites: `rustup target add thumbv7em-none-eabihf`, `cargo install
-flip-link` (set as the linker in `.cargo/config.toml`; linking fails without
-it), `rustup component add llvm-tools` + `cargo install cargo-binutils` for
-`rust-objcopy`, and `dfu-util` for flashing.
+Prerequisites: `nix develop` provides the whole toolchain (Rust with the
+`thumbv7em-none-eabihf` target, flip-link, cargo-binutils, probe-rs,
+dfu-util). Without Nix: `rustup target add thumbv7em-none-eabihf`, `cargo
+install flip-link` (set as the linker in `.cargo/config.toml`; linking fails
+without it), `rustup component add llvm-tools` + `cargo install cargo-binutils`
+for `rust-objcopy`, and `dfu-util` for flashing. The flake must stay tracked by
+git (`git add flake.nix flake.lock`) or `nix develop` will not see it.
 
 ```sh
 cargo build --release                                              # base
