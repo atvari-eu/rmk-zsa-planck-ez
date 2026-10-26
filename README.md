@@ -101,10 +101,6 @@ This project is not affiliated with or endorsed by ZSA Technology Labs, Inc.
 
 ---
 
-**Need help with Rust, Nix, or Cloud?**
-[atvari](https://atvari.eu/) offers consulting and contracting for
-Rust, Nix/NixOS, and cloud engineering. [Get in touch.](https://atvari.eu/contact/)
-
 <a href="https://atvari.eu/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://atvari.eu/images/logo-white.svg">
@@ -112,3 +108,7 @@ Rust, Nix/NixOS, and cloud engineering. [Get in touch.](https://atvari.eu/contac
     <img src="https://atvari.eu/images/logo.svg" alt="atvari" width="180">
   </picture>
 </a>
+
+**Need help with Rust, Nix, or Cloud?**
+[atvari](https://atvari.eu/) offers consulting and contracting for
+Rust, Nix/NixOS, and cloud engineering. [Get in touch.](https://atvari.eu/contact/)
